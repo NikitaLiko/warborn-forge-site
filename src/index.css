@@ -8,35 +8,60 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Military Green & Black Color Palette */
+    --background: 120 15% 8%;
+    --foreground: 120 30% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 120 20% 12%;
+    --card-foreground: 120 25% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 120 25% 10%;
+    --popover-foreground: 120 30% 85%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Military Green Primary */
+    --primary: 120 80% 25%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 120 70% 35%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Dark Military Secondary */
+    --secondary: 120 15% 15%;
+    --secondary-foreground: 120 40% 80%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 120 10% 20%;
+    --muted-foreground: 120 15% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Bright Combat Accent */
+    --accent: 120 90% 40%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 120 15% 25%;
+    --input: 120 20% 18%;
+    --ring: 120 80% 25%;
 
-    --radius: 0.5rem;
+    /* Military Design Elements */
+    --tactical-green: 120 60% 30%;
+    --combat-green: 120 85% 35%;
+    --night-ops: 120 25% 8%;
+    --camo-dark: 120 20% 15%;
+
+    /* Gradients */
+    --gradient-tactical: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-combat: linear-gradient(180deg, hsl(var(--night-ops)), hsl(var(--camo-dark)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--primary)) 100%);
+
+    /* Shadows */
+    --shadow-tactical: 0 10px 30px -10px hsl(var(--primary) / 0.4);
+    --shadow-combat: 0 0 40px hsl(var(--combat-green) / 0.3);
+    --shadow-deep: 0 25px 50px -12px hsl(0 0% 0% / 0.8);
+
+    /* Animations */
+    --transition-tactical: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --pixel-size: 4px;
+
+    --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +126,64 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+@layer utilities {
+  /* Pixel-perfect military styling */
+  .pixel-border {
+    border-style: solid;
+    image-rendering: pixelated;
+  }
+
+  .tactical-glow {
+    box-shadow: var(--shadow-tactical);
+  }
+
+  .combat-glow {
+    box-shadow: var(--shadow-combat);
+  }
+
+  .gradient-tactical {
+    background: var(--gradient-tactical);
+  }
+
+  .gradient-combat {
+    background: var(--gradient-combat);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  /* Minecraft-style pixelated effects */
+  .minecraft-pixel {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  /* Military animations */
+  .tactical-hover {
+    transition: var(--transition-tactical);
+  }
+
+  .tactical-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-tactical);
+  }
+
+  /* Text effects */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--accent) / 0.6);
+  }
+
+  .text-tactical {
+    color: hsl(var(--tactical-green));
+  }
+
+  .text-combat {
+    color: hsl(var(--combat-green));
   }
 }
