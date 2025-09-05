@@ -47,15 +47,18 @@ All colors MUST be HSL.
     --night-ops: 120 25% 8%;
     --camo-dark: 120 20% 15%;
 
-    /* Gradients */
-    --gradient-tactical: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-combat: linear-gradient(180deg, hsl(var(--night-ops)), hsl(var(--camo-dark)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--primary)) 100%);
+    /* Enhanced Gradients */
+    --gradient-tactical: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
+    --gradient-combat: linear-gradient(180deg, hsl(var(--night-ops)) 0%, hsl(var(--camo-dark)) 50%, hsl(var(--primary)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--primary)) 30%, hsl(var(--accent)) 100%);
+    --gradient-animated: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary-glow)), hsl(var(--accent)));
+    --gradient-pulse: linear-gradient(90deg, hsl(var(--accent)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
 
     /* Shadows */
     --shadow-tactical: 0 10px 30px -10px hsl(var(--primary) / 0.4);
     --shadow-combat: 0 0 40px hsl(var(--combat-green) / 0.3);
     --shadow-deep: 0 25px 50px -12px hsl(0 0% 0% / 0.8);
+    --shadow-glow: 0 0 20px hsl(var(--accent) / 0.5);
 
     /* Animations */
     --transition-tactical: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -64,19 +67,12 @@ All colors MUST be HSL.
     --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -131,59 +127,69 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  /* Pixel-perfect military styling */
-  .pixel-border {
-    border-style: solid;
-    image-rendering: pixelated;
-  }
-
-  .tactical-glow {
-    box-shadow: var(--shadow-tactical);
-  }
-
-  .combat-glow {
-    box-shadow: var(--shadow-combat);
-  }
-
-  .gradient-tactical {
-    background: var(--gradient-tactical);
-  }
-
-  .gradient-combat {
-    background: var(--gradient-combat);
-  }
-
   .gradient-hero {
     background: var(--gradient-hero);
   }
-
-  /* Minecraft-style pixelated effects */
-  .minecraft-pixel {
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
+  
+  .gradient-tactical {
+    background: var(--gradient-tactical);
   }
-
-  /* Military animations */
-  .tactical-hover {
-    transition: var(--transition-tactical);
+  
+  .gradient-combat {
+    background: var(--gradient-combat);
   }
-
-  .tactical-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-tactical);
+  
+  .gradient-animated {
+    background: var(--gradient-animated);
+    background-size: 300% 300%;
+    animation: gradientShift 4s ease infinite;
   }
-
-  /* Text effects */
-  .text-glow {
-    text-shadow: 0 0 20px hsl(var(--accent) / 0.6);
+  
+  .gradient-pulse {
+    background: var(--gradient-pulse);
+    background-size: 200% 100%;
+    animation: pulseGradient 3s ease-in-out infinite;
   }
-
-  .text-tactical {
-    color: hsl(var(--tactical-green));
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
   }
-
-  .text-combat {
-    color: hsl(var(--combat-green));
+  
+  .floating-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: -2s;
   }
+  
+  .rotating {
+    animation: rotate 20s linear infinite;
+  }
+  
+  .glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulseGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  from { box-shadow: var(--shadow-glow); }
+  to { box-shadow: 0 0 30px hsl(var(--accent) / 0.8); }
 }

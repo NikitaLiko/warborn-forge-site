@@ -1,8 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, Sword, Users, Target, Zap, Crown } from "lucide-react";
-import militaryBase from "@/assets/military-base.jpg";
-import combatScene from "@/assets/combat-scene.jpg";
 
 const Features = () => {
   const features = [
@@ -39,8 +37,18 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-gradient-to-b from-background to-camo-dark">
-      <div className="container mx-auto px-4">
+    <section id="features" className="py-20 relative overflow-hidden">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 gradient-tactical opacity-30"></div>
+      
+      {/* Animated Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-16 h-16 border-2 border-accent/20 rounded-full rotating"></div>
+        <div className="absolute top-40 right-16 w-12 h-12 border border-primary/30 rotating" style={{animationDirection: 'reverse'}}></div>
+        <div className="absolute bottom-32 left-1/4 w-20 h-20 border-2 border-accent/15 rounded rotating"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-6">
             <span className="text-accent">Возможности</span>
@@ -51,9 +59,13 @@ const Features = () => {
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div key={index} className="text-center p-6">
-                <IconComponent className="h-8 w-8 text-accent mx-auto mb-4" />
-                <h3 className="font-semibold mb-2 text-accent">
+              <div key={index} className="text-center p-6 group">
+                <div className="relative mb-4">
+                  <div className="w-16 h-16 mx-auto gradient-pulse rounded-full flex items-center justify-center glow-pulse">
+                    <IconComponent className="h-8 w-8 text-background group-hover:scale-110 transition-transform" />
+                  </div>
+                </div>
+                <h3 className="font-semibold mb-2 text-accent group-hover:text-primary-glow transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-sm text-foreground/70">

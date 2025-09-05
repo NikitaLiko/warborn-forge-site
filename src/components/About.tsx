@@ -11,8 +11,18 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-camo-dark to-background">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 gradient-combat opacity-50"></div>
+      
+      {/* Floating Particles */}
+      <div className="absolute inset-0">
+        <div className="absolute top-10 left-1/4 w-2 h-2 bg-accent/40 rounded-full floating"></div>
+        <div className="absolute top-32 right-1/4 w-3 h-3 bg-primary/30 rounded-full floating-delayed"></div>
+        <div className="absolute bottom-20 left-1/3 w-2 h-2 bg-accent/50 rounded-full floating"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-8">
             О проекте <span className="text-accent">WarBorn</span>

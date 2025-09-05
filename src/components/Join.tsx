@@ -40,8 +40,19 @@ const Join = () => {
   ];
 
   return (
-    <section id="join" className="py-20 bg-gradient-to-b from-background to-night-ops">
-      <div className="container mx-auto px-4">
+    <section id="join" className="py-20 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 gradient-animated opacity-40"></div>
+      
+      {/* Moving Particles */}
+      <div className="absolute inset-0">
+        <div className="absolute top-16 left-1/5 w-4 h-4 bg-accent/30 rounded floating"></div>
+        <div className="absolute top-1/3 right-1/5 w-3 h-3 bg-primary/40 rounded floating-delayed"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-5 h-5 bg-accent/25 rounded floating"></div>
+        <div className="absolute bottom-16 right-1/4 w-2 h-2 bg-primary-glow/50 rounded floating-delayed"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-6">
             <span className="text-accent">Присоединиться</span>
@@ -49,7 +60,7 @@ const Join = () => {
         </div>
 
         <div className="max-w-md mx-auto text-center mb-8">
-          <div className="bg-muted/20 p-6 rounded border border-primary/30">
+          <div className="bg-muted/20 p-6 rounded border border-primary/30 backdrop-blur-sm glow-pulse">
             <code className="text-lg font-mono text-accent">
               {serverIP}
             </code>
@@ -58,6 +69,7 @@ const Join = () => {
                 variant="outline" 
                 size="sm"
                 onClick={() => copyToClipboard(serverIP)}
+                className="gradient-pulse"
               >
                 <Copy className="h-4 w-4 mr-2" />
                 Копировать IP
@@ -67,7 +79,7 @@ const Join = () => {
         </div>
 
         <div className="flex justify-center">
-          <Button variant="tactical" size="lg">
+          <Button variant="tactical" size="lg" className="gradient-animated glow-pulse">
             <MessageCircle className="h-5 w-5 mr-2" />
             Discord
           </Button>
